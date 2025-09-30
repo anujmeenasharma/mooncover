@@ -37,6 +37,7 @@ import {
   FloatType,
   RGBAFormat,
   SphereGeometry,
+  SpriteNodeMaterial,
 } from "three";
 
 // Enhanced mobile detection utility with iPhone-specific handling
@@ -849,3 +850,5 @@ export const SphereParticles = ({
     </>
   );
 };
+
+extend({ SpriteNodeMaterial });

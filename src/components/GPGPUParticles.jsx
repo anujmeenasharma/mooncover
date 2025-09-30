@@ -41,6 +41,7 @@ import {
   TorusGeometry,
   TorusKnotGeometry,
   ConeGeometry,
+  SpriteNodeMaterial,
 } from "three";
 
 const randValue = /*#__PURE__*/ Fn(({ min, max, seed = 42 }) => {
@@ -605,3 +606,5 @@ export const GPGPUParticles = ({
     </>
   );
 };
+
+extend({ SpriteNodeMaterial });
