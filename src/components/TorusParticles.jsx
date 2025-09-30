@@ -37,7 +37,6 @@ import {
   FloatType,
   RGBAFormat,
   TorusGeometry,
-  SpriteNodeMaterial,
 } from "three";
 
 const randValue = /*#__PURE__*/ Fn(({ min, max, seed = 42 }) => {
@@ -488,5 +487,3 @@ export const TorusParticles = ({
     </>
   );
 };
-
-extend({ SpriteNodeMaterial });

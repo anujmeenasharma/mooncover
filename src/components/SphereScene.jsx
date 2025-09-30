@@ -3,6 +3,7 @@ import { Suspense, useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import * as THREE from "three";
+import { WebGPURenderer } from "three/webgpu";
 import { Sphere } from "./Sphere";
 import { Torus } from "./Torus";
 import { performanceSettings } from "../utils/deviceDetection";
@@ -91,7 +92,7 @@ function SphereScene() {
           
           if (supportsWebGPU) {
             try {
-              renderer = new THREE.WebGPURenderer({
+              renderer = new WebGPURenderer({
                 canvas,
                 powerPreference: "high-performance",
                 antialias: performanceSettings.antialias,
