@@ -74,7 +74,7 @@ const Conversations = () => {
               <div className="flex flex-col gap-4 flex-1">
                 <div className="text-[#D1E40F] relative">
                   <ScrambleText
-                    vwText="text-[1.8vw]"
+                    vwText="text-[5vw] sm:text-[3.5vw] lg:text-[2.1vw]"
                     text="Technology amplifies creativity."
                   />
                 </div>

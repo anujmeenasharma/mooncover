@@ -100,7 +100,7 @@ const Home = ({ navigationOverlayRef }) => {
         <Details />
       </section>
       
-      <section className="relative h-[600vh] bg-transparent z-[999] w-full" id="launchlab">
+      <section className="relative h-[600vh] bg-transparent z-[30] w-full" id="launchlab">
         <LaunchLab />
       </section>
       

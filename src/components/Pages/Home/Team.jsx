@@ -2,7 +2,10 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ScrambleText from "../../UiComponents/ScrambleText";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Team = () => {
   const leftLineRef = useRef(null);
@@ -11,6 +14,15 @@ const Team = () => {
   const rightLineRef2 = useRef(null);
   const teamRef = useRef(null);
   const containerRef = useRef(null);
+  
+  // Mobile stagger animation refs
+  const mobileHeadingRef = useRef(null);
+  const mobileSubtitleRef = useRef(null);
+  const mobileCeoImageRef = useRef(null);
+  const mobileCeoNameRef = useRef(null);
+  const mobileCeoTitleRef = useRef(null);
+  const mobileCeoDescRef = useRef(null);
+  const mobileFinalParaRef = useRef(null);
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -45,6 +57,56 @@ const Team = () => {
         scrub: 1,
       },
     });
+
+    // Mobile stagger animations - only on screens smaller than lg
+    const mobileElements = [
+      mobileHeadingRef.current,
+      mobileSubtitleRef.current,
+      mobileCeoImageRef.current,
+      mobileCeoNameRef.current,
+      mobileCeoTitleRef.current,
+      mobileCeoDescRef.current,
+      mobileFinalParaRef.current
+    ].filter(Boolean);
+
+    if (mobileElements.length) {
+      // Use GSAP's matchMedia for responsive animations
+      let mm = gsap.matchMedia();
+      
+      mm.add("(max-width: 1023px)", () => {
+        // Set initial hidden state
+        gsap.set(mobileElements, {
+          opacity: 0,
+          y: 30,
+        });
+
+        // Create timeline for mobile stagger animation
+        const mobileTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 200%",
+            toggleActions: "play none none reverse",
+          }
+        });
+
+        // Animate elements in with stagger
+        mobileTl.to(mobileElements, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: "power2.out"
+        });
+      });
+      
+      // Ensure elements are visible on large screens
+      mm.add("(min-width: 1024px)", () => {
+        gsap.set(mobileElements, {
+          opacity: 1,
+          y: 0,
+        });
+      });
+    }
   });
   
   return (
@@ -105,8 +167,10 @@ const Team = () => {
           {/* Team Info Section */}
           <div className="flex flex-col">
             <div className="flex flex-col">
-              <ScrambleText textSize="2xl" text="Team behind it" />
-              <p className="text-xs w-[85%] uppercase leading-relaxed">
+              <div ref={mobileHeadingRef}>
+                <ScrambleText textSize="2xl" text="Team behind it" />
+              </div>
+              <p ref={mobileSubtitleRef} className="text-xs w-[85%] uppercase leading-relaxed">
                 25+ years of combined experience. Billions in GMV. A global
                 perspective from day one.
               </p>
@@ -116,16 +180,17 @@ const Team = () => {
           {/* CEO Section */}
           <div className="flex gap-8 text-center">
             <img 
+              ref={mobileCeoImageRef}
               src="/openGL.jpg" 
               alt="ceo" 
               className="w-32 h-44 md:w-40 md:h-40 object-cover" 
             />
             <div className="flex flex-col gap-2">
-              <div className="text-[#D1E40F]">
+              <div ref={mobileCeoNameRef} className="text-[#D1E40F]">
                 <ScrambleText vwText="lg:text-[1.5vw] text-start text-[5vw]" text="PETER KOPITZ" />
               </div>
-              <p className="lg:text-lg text-start text-xs font-medium">Founder & CEO</p>
-              <p className="lg:text-sm text-[3vw] text-start leading-relaxed w-full">
+              <p ref={mobileCeoTitleRef} className="lg:text-lg text-start text-xs font-medium">Founder & CEO</p>
+              <p ref={mobileCeoDescRef} className="lg:text-sm text-[3vw] text-start leading-relaxed w-full">
                 Co-founded Zalora Thailand under Rocket Internet Led digital
                 transformation at global-scale F&B brands 14+ years across PE, VC,
                 startups, and international expansion
@@ -133,7 +198,7 @@ const Team = () => {
             </div>
           </div>
 
-          <p className="text-[3vw] text-justify leading-relaxed">
+          <p ref={mobileFinalParaRef} className="text-[3vw] text-justify leading-relaxed">
               Our leadership team has built category-defining consumer brands from
               zero to market leadership across Southeast Asia and beyond. We've
               scaled operations for major fashion e-commerce platforms, led

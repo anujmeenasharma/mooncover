@@ -13,7 +13,7 @@ const Card = ({ i, title, description, src, url, color, progress, range, targetS
   const scale = useTransform(progress, range, [1, targetScale]);
 
   return (
-    <div ref={container} className="h-screen flex items-center justify-center sticky top-0 px-4 sm:px-8 lg:px-0">
+    <div ref={container} className="h-screen flex items-center justify-center pt-28 sticky top-0 px-4 sm:px-8 lg:px-0">
       <motion.div 
         style={{
           // Responsive top offset: smaller on mobile, larger on desktop

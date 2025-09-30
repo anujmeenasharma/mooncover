@@ -62,9 +62,12 @@ const StackCards = () => {
   });
 
   return (
-    <div ref={container} className="relative z-20 mt-[50vh] min-h-screen">
-      <div className="h-screen sticky lg:top-0 top-10 w-full flex flex-col lg:flex-row lg:items-center justify-start lg:justify-between px-4 sm:px-8 md:px-16 lg:px-32">
-        <div className="w-[80%] lg:w-[25%] relative z-[1000]">
+    <div ref={container} className="relative z-20 mt-[55vh] min-h-screen">
+      <div className="h-screen sticky lg:top-0 top-14 w-full flex flex-col lg:flex-row lg:items-center justify-start lg:justify-between px-4 sm:px-8 md:px-16 lg:px-32">
+        <p className="text-[3vw] sm:text-sm w-full lg:w-[25%] content max-w-sm lg:max-w-none lg:order-2 order-1 mb-6 lg:mb-0">
+          We start with people, not products. We dive into their rhythms, their rituals, and the quiet truths of how they live and what they love. From these insights, we craft stories that don't just get seen—they get felt.
+        </p>
+        <div className="w-[80%] lg:w-[25%] relative content lg:order-1 order-2">
           <ScrambleText 
             vwText="text-[5vw] sm:text-[3.5vw] lg:text-[2.1vw]" 
             text="From Vision to Market Dominance. Built for"
@@ -74,13 +77,10 @@ const StackCards = () => {
             text="Builders and Brands Who Think Bigger."
           />
         </div>
-        <p className="text-[3vw] sm:text-sm w-full lg:w-[25%] content max-w-sm lg:max-w-none">
-        We start with people, not products. We dive into their rhythms, their rituals, and the quiet truths of how they live and what they love. From these insights, we craft stories that don't just get seen—they get felt.
-        </p>
       </div>
-      <div className="content">
+      <div className="content flex flex-col items-center lg:items-stretch">
         {projects.map((project, i) => {
-          const targetScale = 1 - (projects.length - i) * 0.05;
+          const targetScale = 1 - (projects.length - i) * 0.01;
           return (
             <Card
               key={`${project.title}-${i}`}
