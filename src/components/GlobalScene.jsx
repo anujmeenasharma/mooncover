@@ -3,6 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
 import { Experience } from "./Experience";
 import * as THREE from "three";
+import { WebGPURenderer } from "three/webgpu";
 import { useCallback } from "react";
 import { useState } from "react";
 import { performanceSettings } from "../utils/deviceDetection";
@@ -41,7 +42,7 @@ const GlobalScene = ({ curGeometry, hideControls = false, shouldAnimate = false 
           
           if (supportsWebGPU) {
             try {
-              renderer = new THREE.WebGPURenderer({
+              renderer = new WebGPURenderer({
                 canvas,
                 powerPreference: "high-performance",
                 antialias: performanceSettings.antialias,
