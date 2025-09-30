@@ -2,7 +2,7 @@ import { Canvas } from "@react-three/fiber";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import * as THREE from "three";
+import * as THREE from "three/webgpu";
 import { Sphere } from "./Sphere";
 import { Torus } from "./Torus";
 import { performanceSettings } from "../utils/deviceDetection";
@@ -83,43 +83,7 @@ function SphereScene() {
           }
         }}
         gl={(canvas) => {
-          // Try WebGPU first, fallback to WebGL
-          let renderer;
-          
-          // Check if WebGPU is supported
-          const supportsWebGPU = 'gpu' in navigator;
-          
-          if (supportsWebGPU) {
-            try {
-              renderer = new THREE.WebGPURenderer({
-                canvas,
-                powerPreference: "high-performance",
-                antialias: performanceSettings.antialias,
-                alpha: true,
-                stencil: false,
-              });
-              renderer.setClearColor(0x000000, 0);
-              renderer.setPixelRatio(performanceSettings.pixelRatio);
-              
-              // Apply WebGL optimizations
-              webglOptimizer.optimizeRenderer(renderer);
-              
-              renderer.init().then(() => {
-                setFrameloop("always");
-              }).catch((error) => {
-                console.warn('WebGPU initialization failed, falling back to WebGL:', error);
-                // Fallback will be handled by the catch block below
-                throw error;
-              });
-              
-              return renderer;
-            } catch (error) {
-              console.warn('WebGPU not supported, falling back to WebGL:', error);
-            }
-          }
-          
-          // WebGL fallback
-          renderer = new THREE.WebGLRenderer({
+          const renderer = new THREE.WebGPURenderer({
             canvas,
             powerPreference: "high-performance",
             antialias: performanceSettings.antialias,
@@ -132,7 +96,9 @@ function SphereScene() {
           // Apply WebGL optimizations
           webglOptimizer.optimizeRenderer(renderer);
           
-          setFrameloop("always");
+          renderer.init().then(() => {
+            setFrameloop("always");
+          });
           return renderer;
         }}
       >

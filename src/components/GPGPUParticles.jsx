@@ -42,7 +42,7 @@ import {
   TorusKnotGeometry,
   ConeGeometry,
   SpriteNodeMaterial,
-} from "three";
+} from "three/webgpu";
 
 const randValue = /*#__PURE__*/ Fn(({ min, max, seed = 42 }) => {
   return hash(instanceIndex.add(seed)).mul(max.sub(min)).add(min);

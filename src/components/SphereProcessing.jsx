@@ -2,7 +2,7 @@ import { useFrame, useThree } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
 import { bloom } from "three/examples/jsm/tsl/display/BloomNode.js";
 import { emissive, mrt, output, pass } from "three/tsl";
-import * as THREE from "three";
+import * as THREE from "three/webgpu";
 
 export const SphereProcessing = ({
   strength = 6.0,

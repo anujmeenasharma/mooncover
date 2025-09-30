@@ -38,7 +38,7 @@ import {
   RGBAFormat,
   SphereGeometry,
   SpriteNodeMaterial,
-} from "three";
+} from "three/webgpu";
 
 // Enhanced mobile detection utility with iPhone-specific handling
 const isMobile = () => {

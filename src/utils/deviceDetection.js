@@ -8,33 +8,11 @@ export class DeviceCapability {
   }
 
   detectCapabilities() {
-    // Handle SSR/Node environment
-    if (typeof window === 'undefined' || typeof document === 'undefined') {
-      return { 
-        tier: 'medium', 
-        reason: 'Server-side rendering',
-        isMobile: false,
-        isLowEndMobile: false,
-        isIntegratedGPU: false,
-        hardwareConcurrency: 4,
-        deviceMemory: 4
-      };
-    }
-
     const canvas = document.createElement('canvas');
     const gl = canvas.getContext('webgl2') || canvas.getContext('webgl');
     
     if (!gl) {
-      console.warn('WebGL not supported, falling back to low performance settings');
-      return { 
-        tier: 'low', 
-        reason: 'No WebGL support',
-        isMobile: /mobile|android|iphone|ipad|touch|tablet/i.test(navigator.userAgent),
-        isLowEndMobile: true,
-        isIntegratedGPU: true,
-        hardwareConcurrency: navigator.hardwareConcurrency || 1,
-        deviceMemory: navigator.deviceMemory || 1
-      };
+      return { tier: 'low', reason: 'No WebGL support' };
     }
 
     const capabilities = {

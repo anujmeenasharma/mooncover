@@ -25,14 +25,7 @@ function App() {
   useVh();
 
   const handleAssetLoading = (onComplete) => {
-    const assetsToLoad = [
-      '/landingMain.svg',
-      '/favicon.svg',
-      '/font/PPTelegraf-Regular.otf',
-      '/font/PPTelegraf-Ultrabold.otf',
-      '/font/PPTelegraf-Ultralight.otf',
-      '/font/Montserrat.ttf'
-    ];
+    const assetsToLoad = ['/landingMain.svg'];
     let loadedCount = 0;
     const totalAssets = assetsToLoad.length;
 
@@ -49,35 +42,18 @@ function App() {
       if (src.endsWith('.svg') || src.endsWith('.png') || src.endsWith('.jpg')) {
         const img = new window.Image();
         img.onload = checkAllLoaded;
-        img.onerror = (error) => {
-          console.warn(`Failed to load image: ${src}`, error);
-          checkAllLoaded(); // Continue even if asset fails
-        };
+        img.onerror = checkAllLoaded;
         img.src = src;
-      } else if (src.endsWith('.otf') || src.endsWith('.ttf')) {
-        // Font loading
-        const font = new FontFace('preload-font', `url(${src})`);
-        font.load()
-          .then(() => {
-            console.log(`Font loaded: ${src}`);
-            checkAllLoaded();
-          })
-          .catch((error) => {
-            console.warn(`Failed to load font: ${src}`, error);
-            checkAllLoaded(); // Continue even if font fails
-          });
       } else {
         setTimeout(checkAllLoaded, Math.random() * 1000 + 500);
       }
     });
 
-    // Fallback timeout - don't wait forever
     setTimeout(() => {
       if (loadedCount < totalAssets) {
-        console.warn(`Asset loading timeout. Loaded ${loadedCount}/${totalAssets} assets.`);
         onComplete();
       }
-    }, 8000); // Increased timeout for production
+    }, 5000);
   };
 
   const handleLoadingComplete = () => {
