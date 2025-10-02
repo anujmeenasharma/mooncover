@@ -37,12 +37,20 @@ export default function Contact({ navigationOverlayRef }) {
     setIsSubmitting(true);
     setSubmitStatus("");
 
+
+    // await emailjs.sendForm(
+    //   "service_ip70kvb", // Service ID
+    //   "template_4t4qc8o", // Template ID
+    //   formRef.current,
+    //   "T4qWu19B5Yg6alfHl" // Public Key
+    // );
+
     try {
       await emailjs.sendForm(
-        "service_ip70kvb", // Service ID
-        "template_4t4qc8o", // Template ID
+        "service_jf1ca2e", // Service ID
+        "template_2l8qzrc", // Template ID
         formRef.current,
-        "T4qWu19B5Yg6alfHl" // Public Key
+        "Vkcxci6tbgYH4M58I" // Public Key
       );
 
       setSubmitStatus("Message sent successfully!");

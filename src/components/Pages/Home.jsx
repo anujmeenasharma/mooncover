@@ -71,11 +71,11 @@ const Home = ({ navigationOverlayRef }) => {
         <SphereScene />
       </LazyScene>
 
-      <div ref={animeDims} className="h-screen opacity-0 w-full block lg:hidden
+      {/* <div ref={animeDims} className="h-screen opacity-0 w-full block lg:hidden
       
       bg-black fixed top-0 left-0 z-[10]">
 
-      </div>
+      </div> */}
 
       <Crosshair />
 

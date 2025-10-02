@@ -143,10 +143,10 @@ const Team = () => {
           </p>
         </motion.div>
         <motion.div 
-          className="h-[100vh] w-[20%] flex flex-col justify-center gap-10"
+          className="h-[100vh] w-[20%] flex flex-col justify-center relative gap-10"
           style={{ y: rightColumnY }}
         >
-          <img src="/openGL.jpg" alt="ceo" className="w-[80%] object-contain" />
+          <img src="/peterpng.png" alt="ceo" className="w-[100%] relative -left-[2.4vw] object-contain" />
           <div>
             <div className="text-[#D1E40F]">
               <ScrambleText textSize="2xl" text="PETER KOPITZ" />
@@ -181,9 +181,9 @@ const Team = () => {
           <div className="flex gap-8 text-center">
             <img 
               ref={mobileCeoImageRef}
-              src="/openGL.jpg" 
+              src="/peterpng.png" 
               alt="ceo" 
-              className="w-32 h-44 md:w-40 md:h-40 object-cover" 
+              className="w-48 h-48 md:w-40 md:h-40 object-cover" 
             />
             <div className="flex flex-col gap-2">
               <div ref={mobileCeoNameRef} className="text-[#D1E40F]">
