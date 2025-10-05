@@ -161,6 +161,10 @@ export default function Contact({ navigationOverlayRef }) {
           {/* Left Column */}
           <div className="flex-1 flex flex-col justify-between">
             <div className="flex-1">
+            <div className='hidden lg:block'>
+                <img src='/google.svg' alt='footer' className='w-[1.5vw] h-[1.5vw] object-contain' />
+                <p className='text-black/40 w-full'>Great brands start with great conversations. Let's start ours.</p>
+              </div>
               <div className="flex sm:flex-row sm:items-center gap-2 sm:gap-2 mb-6 sm:mb-8">
                 <h1 ref={mainHeadingRef} className="text-[6vw] sm:text-4xl lg:text-5xl lg:pt-3 pt-1 font-bold text-black telegraf leading-none">
                   <span ref={mainHeadingStaggerRef} className="will-change-transform block">
@@ -187,50 +191,42 @@ export default function Contact({ navigationOverlayRef }) {
                 </div>
               </div>
             </div>
-
-            {/* Footer image positioned at bottom - hidden on mobile/tablet */}
-            <div className="hidden lg:flex lg:flex-col absolute bottom-48 left-10">
-              <div>
-                <img src='/google.svg' alt='footer' className='w-[3vw] h-[3vw] object-contain' />
-                <p className='text-black/40 w-[40%]'>Great brands start with great conversations. Let's start ours.</p>
-              </div>
-              <img src='footer.svg' alt='footer' className='w-[30vw] h-[10vw] object-contain' />
-            </div>
           </div>
 
           {/* Right Column - Contact Form */}
-          <div className="flex-1 lg:pt-22 flex flex-col justify-center max-w-none lg:max-w-md">
+          <div className="flex-1 flex flex-col justify-center max-w-none lg:max-w-2xl">
             <form ref={formRef} onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
-              <div>
-                <label className="block text-xs sm:text-sm font-medium text-black mb-2">
-                  NAME <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  required
-                  className="w-full border-0 focus:border-[#0B0B0C] focus:outline-none py-2 bg-[#F9F9F9] border-[#0B0B0C] border-b-2 text-black placeholder-gray-400 text-sm"
-                />
+              <div className='flex gap-2'>
+                <div className='w-full'>
+                  <label className="block text-xs sm:text-sm font-medium text-black mb-2">
+                    NAME
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    required
+                    className="w-full border-0 focus:border-black/20 focus:outline-none py-2 bg-[#F9F9F9] border-black/20 border-b-2 text-black placeholder-gray-400 text-sm"
+                  />
+                </div>
+                <div className='w-full'>
+                  <label className="block text-xs sm:text-sm font-medium text-black mb-2">COMPANY NAME</label>
+                  <input
+                    type="text"
+                    name="company"
+                    className="w-full border-0 focus:border-black/20 focus:outline-none py-2 bg-[#F9F9F9] border-black/20 border-b-2 text-black placeholder-gray-400 text-sm"
+                  />
+                </div>
               </div>
 
               <div>
-                <label className="block text-xs sm:text-sm font-medium text-black mb-2">COMPANY NAME</label>
-                <input
-                  type="text"
-                  name="company"
-                  className="w-full border-0 focus:border-[#0B0B0C] focus:outline-none py-2 bg-[#F9F9F9] border-[#0B0B0C] border-b-2 text-black placeholder-gray-400 text-sm"
-                />
-              </div>
-
-              <div>
                 <label className="block text-xs sm:text-sm font-medium text-black mb-2">
-                  EMAIL <span className="text-red-500">*</span>
+                  EMAIL
                 </label>
                 <input
                   type="email"
                   name="email"
                   required
-                  className="w-full border-0 focus:border-[#0B0B0C] focus:outline-none py-2 bg-[#F9F9F9] border-[#0B0B0C] border-b-2 text-black placeholder-gray-400 text-sm"
+                  className="w-full border-0 focus:border-black/20 focus:outline-none py-2 bg-[#F9F9F9] border-black/20 border-b-2 text-black placeholder-gray-400 text-sm"
                 />
               </div>
 
@@ -239,19 +235,19 @@ export default function Contact({ navigationOverlayRef }) {
                 <input
                   type="text"
                   name="subject"
-                  className="w-full border-0 focus:border-[#0B0B0C] focus:outline-none py-2 bg-[#F9F9F9] border-[#0B0B0C] border-b-2 text-black placeholder-gray-400 text-sm"
+                  className="w-full border-0 focus:border-black/20 focus:outline-none py-2 bg-[#F9F9F9] border-black/20 border-b-2 text-black placeholder-gray-400 text-sm"
                 />
               </div>
 
               <div>
                 <label className="block text-xs sm:text-sm font-medium text-black mb-2">
-                  MESSAGE <span className="text-red-500">*</span>
+                  MESSAGE
                 </label>
                 <textarea
                   name="message"
                   required
-                  rows={3}
-                  className="w-full px-2 border-0 focus:border-[#0B0B0C] focus:outline-none py-2 bg-[#F9F9F9] border-[#0B0B0C] border-b-2 text-black placeholder-gray-400 resize-none text-sm"
+                  rows={5}
+                  className="w-full px-2 border-0 focus:border-black/20 focus:outline-none py-2 bg-[#F9F9F9] border-black/20 border-b-2 text-black placeholder-gray-400 resize-none text-sm"
                   placeholder="Tell us about your project..."
                 />
               </div>
@@ -286,61 +282,122 @@ export default function Contact({ navigationOverlayRef }) {
       {/* Footer - Fixed at bottom */}
       <div>
         <div className="pt-6 sm:pt-8">
-          <div className="flex sm:px-6 lg:px-10 px-4 flex-col sm:flex-row sm:justify-between gap-6 sm:gap-12">
+          <div className="flex sm:px-6 lg:px-10 px-4 flex-col w-full sm:flex-row sm:justify-between gap-4 sm:gap-8 lg:gap-10">
             {/* Logo and Tagline */}
-            <div className="sm:flex-1">
-              <div ref={footerTextRef} className="space-y-2 text-gray-500">
-                <span ref={footerTextStaggerRef} className="will-change-transform block">
-                  <p className="text-lg sm:text-xl lg:leading-none">Built For Permanence.</p>
-                  <p className="text-lg sm:text-xl lg:leading-none">Designed To Resonate. Ready To Scale.</p>
+            <div className="sm:flex-1 py-5 w-full">
+              <div
+                ref={footerTextRef}
+                className="space-y-1 text-gray-500 flex flex-col lg:flex-row lg:items-center gap-5"
+              >
+                <img
+                  src="footer.svg"
+                  alt="footer"
+                  className="w-[28vw] h-[7vw] object-contain lg:w-[12vw] lg:h-[5vw] max-w-[180px] max-h-[40px]"
+                />
+                <span
+                  ref={footerTextStaggerRef}
+                  className="will-change-transform block pb-3"
+                >
+                  <p className="text-xs sm:text-base lg:text-sm whitespace-nowrap lg:leading-none">
+                    Built For Permanence.
+                  </p>
+                  <p className="text-xs sm:text-base lg:text-sm lg:leading-none whitespace-nowrap">
+                    Designed To Resonate. Ready To Scale.
+                  </p>
                 </span>
               </div>
             </div>
 
             {/* Links Section */}
-            <div className='flex flex-col sm:flex-row gap-6 sm:gap-8 lg:gap-12'>
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 lg:gap-8">
               {/* Company Links */}
               <div>
-                <h3 className="font-bold text-lg mb-1 telegraf lg:mb-3 text-black lg:text-sm">COMPANY</h3>
-                <div className="flex gap-2">
-                  <a href="#" className="block text-gray-400 text-xs sm:text-sm">HOW IT WORKS</a>
-                  <a href="#" className="block text-gray-400 text-xs sm:text-sm">OUR BELIEFS</a>
+                <h3 className="font-bold text-base mb-1 telegraf lg:mb-2 text-black lg:text-xs">
+                  COMPANY
+                </h3>
+                <div className="flex gap-1">
+                  <a
+                    href="#"
+                    className="block text-gray-400 text-xs sm:text-xs"
+                  >
+                    HOW IT WORKS
+                  </a>
+                  <a
+                    href="#"
+                    className="block text-gray-400 text-xs sm:text-xs"
+                  >
+                    OUR BELIEFS
+                  </a>
                 </div>
               </div>
 
               {/* Contact */}
               <div>
-                <h3 className="font-bold text-lg mb-1 telegraf lg:mb-3 text-black lg:text-sm">GET IN TOUCH</h3>
-                <a href="mailto:CONNECT@MOONSHOTSTUDIO.AI" className="text-gray-400 text-xs sm:text-sm block mb-4">
-               CONNECT@MOONSHOTSTUDIO.AI
+                <h3 className="font-bold text-base mb-1 telegraf lg:mb-2 text-black lg:text-xs">
+                  GET IN TOUCH
+                </h3>
+                <a
+                  href="mailto:CONNECT@MOONSHOTSTUDIO.AI"
+                  className="text-gray-400 text-xs sm:text-xs block mb-2 break-all"
+                  style={{ wordBreak: "break-all" }}
+                >
+                  CONNECT@MOONSHOTSTUDIO.AI
                 </a>
               </div>
 
               {/* Social */}
               <div>
-                <h3 className="font-bold text-lg mb-1 telegraf lg:mb-3 text-black lg:text-sm">OUR SOCIALS</h3>
-                <div className="flex text-black pb-4 lg:pb-0 space-x-3 sm:space-x-4">
-                  <img src="/ig.svg" alt="instagram" className="w-6 h-6 sm:w-5 sm:h-5 text-gray-400  cursor-pointer" />
-                  <span>|</span>
-                  <img src="/in.svg" alt="linkedin" className="w-6 h-6 sm:w-5 sm:h-5 text-gray-400  cursor-pointer" />
-                  <span>|</span>
-                  <img src="/x.svg" alt="twitter" className="w-6 h-6 sm:w-5 sm:h-5 text-gray-400  cursor-pointer" />
-                  <span>|</span>
-                  <img src="/fb.svg" alt="facebook" className="w-6 h-6 sm:w-5 sm:h-5 text-gray-400  cursor-pointer" />
-                  <span>|</span>
-                  <img src="/yt.svg" alt="youtube" className="w-6 h-6 sm:w-5 sm:h-5 text-gray-400  cursor-pointer" />
+                <h3 className="font-bold text-base mb-1 telegraf lg:mb-2 text-black lg:text-xs">
+                  OUR SOCIALS
+                </h3>
+                <div className="flex text-black pb-2 lg:pb-0 space-x-2 sm:space-x-3">
+                  <img
+                    src="/ig.svg"
+                    alt="instagram"
+                    className="w-5 h-5 sm:w-4 sm:h-4 text-gray-400 cursor-pointer"
+                  />
+                  <span className="text-xs">|</span>
+                  <img
+                    src="/in.svg"
+                    alt="linkedin"
+                    className="w-5 h-5 sm:w-4 sm:h-4 text-gray-400 cursor-pointer"
+                  />
+                  <span className="text-xs">|</span>
+                  <img
+                    src="/x.svg"
+                    alt="twitter"
+                    className="w-5 h-5 sm:w-4 sm:h-4 text-gray-400 cursor-pointer"
+                  />
+                  <span className="text-xs">|</span>
+                  <img
+                    src="/fb.svg"
+                    alt="facebook"
+                    className="w-5 h-5 sm:w-4 sm:h-4 text-gray-400 cursor-pointer"
+                  />
+                  <span className="text-xs">|</span>
+                  <img
+                    src="/yt.svg"
+                    alt="youtube"
+                    className="w-5 h-5 sm:w-4 sm:h-4 text-gray-400 cursor-pointer"
+                  />
                 </div>
               </div>
             </div>
           </div>
 
           {/* Bottom Footer */}
-          <div className="lg:py-4 py-6 lg:px-10 px-4 bg-[#F3F3F3] flex sm:flex-row sm:justify-between sm:items-center gap-3 sm:gap-0 text-xs flex-col-reverse lg:flex-row text-gray-400 text-center lg:text-left">
-            <p>Copyright © 2024. All rights reserved. Moonshot Studios</p>
-            <div className="flex space-x-4 lg:justify-start justify-center">
-              <a href="#" className="">Terms & conditions</a>
+          <div className="lg:py-3 py-4 lg:px-10 px-4 bg-[#F3F3F3] flex sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-0 text-[11px] flex-col-reverse lg:flex-row text-gray-400 text-center lg:text-left">
+            <p className="truncate">
+              Copyright © 2024. All rights reserved. Moonshot Studios
+            </p>
+            <div className="flex space-x-2 lg:justify-start justify-center">
+              <a href="#" className="whitespace-nowrap">
+                Terms & conditions
+              </a>
               <span>|</span>
-              <a href="#" className="">Privacy policy</a>
+              <a href="#" className="whitespace-nowrap">
+                Privacy policy
+              </a>
             </div>
           </div>
         </div>
