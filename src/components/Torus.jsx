@@ -3,23 +3,31 @@ import { useMemo } from "react";
 import { useThree } from "@react-three/fiber";
 
 export const Torus = ({ active = true, onBloomUpdate }) => {
-  const supportsWebGPU = useMemo(() => typeof navigator !== "undefined" && "gpu" in navigator, []);
+  const gl = useThree((state) => state.gl);
+  const supportsWebGPU = useMemo(() => {
+    // Prefer checking the actual renderer capabilities
+    return !!(gl && (gl.isWebGPURenderer || typeof gl.compute === "function"));
+  }, [gl]);
 
-  if (supportsWebGPU) {
+  // Hotfix: disable Torus on production to avoid blank screen until fallback is stable
+  const isProd = import.meta && import.meta.env && import.meta.env.PROD;
+  if (isProd) return null;
+
+  if (!supportsWebGPU) {
+    // WebGL fallback: particle-like torus using Points, tuned for visibility
     return (
       <>
-        <TorusParticles active={active} onBloomUpdate={onBloomUpdate} />
+        <points position={[0, 0.8, 0]} frustumCulled={false}>
+          <torusGeometry args={[2.5, 0.8, 96, 384]} />
+          <pointsMaterial color="#D1E40F" size={0.08} sizeAttenuation depthWrite={false} depthTest={false} transparent />
+        </points>
       </>
     );
   }
 
-  // WebGL fallback: simple torus mesh so it renders without WebGPU
   return (
     <>
-      <mesh position={[0, 0.8, 1.5]} castShadow receiveShadow>
-        <torusGeometry args={[1.8, 0.6, 32, 128]} />
-        <meshBasicMaterial color="#FF7A1A" wireframe={false} />
-      </mesh>
+      <TorusParticles active={active} onBloomUpdate={onBloomUpdate} />
     </>
   );
 };
