@@ -103,7 +103,7 @@ function SphereScene() {
         }}
       >
         <Suspense>
-          {/* <Sphere /> */}
+          <Sphere />
           <Torus />
         </Suspense>
         {/* Post-processing removed */}

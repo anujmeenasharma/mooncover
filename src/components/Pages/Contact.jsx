@@ -195,9 +195,9 @@ export default function Contact({ navigationOverlayRef }) {
 
           {/* Right Column - Contact Form */}
           <div className="flex-1 flex flex-col justify-center max-w-none lg:max-w-2xl">
-            <form ref={formRef} onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
               <div className='flex gap-2'>
-                <div className='w-full'>
+                <div className='w-[80%]'>
                   <label className="block text-xs sm:text-sm font-medium text-black mb-2">
                     NAME
                   </label>
@@ -205,15 +205,15 @@ export default function Contact({ navigationOverlayRef }) {
                     type="text"
                     name="name"
                     required
-                    className="w-full border-0 focus:border-black/20 focus:outline-none py-2 bg-[#F9F9F9] border-black/20 border-b-2 text-black placeholder-gray-400 text-sm"
+                    className="w-[90%] border-0 focus:border-[#828282] focus:outline-none py-2 bg-[#F9F9F9] border-[#828282] border-b-[.5px] text-black placeholder-gray-400 text-sm"
                   />
                 </div>
-                <div className='w-full'>
+                <div className='w-[80%]'>
                   <label className="block text-xs sm:text-sm font-medium text-black mb-2">COMPANY NAME</label>
                   <input
                     type="text"
                     name="company"
-                    className="w-full border-0 focus:border-black/20 focus:outline-none py-2 bg-[#F9F9F9] border-black/20 border-b-2 text-black placeholder-gray-400 text-sm"
+                    className="w-full border-0 focus:border-[#828282] focus:outline-none py-2 bg-[#F9F9F9] border-[#828282] border-b-[.5px] text-black placeholder-gray-400 text-sm"
                   />
                 </div>
               </div>
@@ -226,7 +226,7 @@ export default function Contact({ navigationOverlayRef }) {
                   type="email"
                   name="email"
                   required
-                  className="w-full border-0 focus:border-black/20 focus:outline-none py-2 bg-[#F9F9F9] border-black/20 border-b-2 text-black placeholder-gray-400 text-sm"
+                  className="w-full border-0 focus:border-[#828282] focus:outline-none py-2 bg-[#F9F9F9] border-[#828282] border-b-[.5px] text-black placeholder-gray-400 text-sm"
                 />
               </div>
 
@@ -235,7 +235,7 @@ export default function Contact({ navigationOverlayRef }) {
                 <input
                   type="text"
                   name="subject"
-                  className="w-full border-0 focus:border-black/20 focus:outline-none py-2 bg-[#F9F9F9] border-black/20 border-b-2 text-black placeholder-gray-400 text-sm"
+                  className="w-full border-0 focus:border-[#828282] focus:outline-none py-2 bg-[#F9F9F9] border-[#828282] border-b-[.5px] text-black placeholder-gray-400 text-sm"
                 />
               </div>
 
@@ -247,7 +247,7 @@ export default function Contact({ navigationOverlayRef }) {
                   name="message"
                   required
                   rows={5}
-                  className="w-full px-2 border-0 focus:border-black/20 focus:outline-none py-2 bg-[#F9F9F9] border-black/20 border-b-2 text-black placeholder-gray-400 resize-none text-sm"
+                  className="w-full px-2 border-0 focus:border-[#828282] focus:outline-none py-2 bg-[#F9F9F9] border-[#828282] border-b-[.5px] text-black placeholder-gray-400 resize-none text-sm"
                   placeholder="Tell us about your project..."
                 />
               </div>
@@ -267,7 +267,7 @@ export default function Contact({ navigationOverlayRef }) {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`font-medium py-2 sm:py-1 px-12 sm:px-16 text-xs sm:text-sm transition-colors duration-200 mt-4 sm:mt-6 ${isSubmitting
+                className={`font-medium py-2 sm:py-1 px-12 sm:px-16 text-xs sm:text-sm transition-colors duration-200 ${isSubmitting
                   ? 'bg-gray-400 cursor-not-allowed text-gray-600'
                   : 'bg-lime-400 hover:bg-lime-500 text-black'
                   }`}
