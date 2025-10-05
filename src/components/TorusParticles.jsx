@@ -130,7 +130,7 @@ export const TorusParticles = ({
   const emissiveBoost = 1.5;
   const torusPositionX = 0;
   const torusPositionY = 0;
-  const torusPositionZ = 5;
+  const torusPositionZ = 0;
 
   // --- MODIFIED: Use dynamic particle count based on device ---
   const [dynamicNbParticles, setDynamicNbParticles] = useState(() => getNbParticles(nbParticles));
