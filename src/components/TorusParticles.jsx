@@ -119,7 +119,8 @@ function getNbParticles(defaultNbParticles) {
 export const TorusParticles = ({ 
   nbParticles = performanceSettings.torusParticles, 
   active = true, 
-  onBloomUpdate 
+  onBloomUpdate,
+  shouldAnimate = true // NEW: Control when particles should animate to form the torus
 }) => {
   // Default values when Leva controls are commented out
   const curGeometry = "Medium";
@@ -333,7 +334,7 @@ export const TorusParticles = ({
 
   const gl = useThree((state) => state.gl);
 
-  const { nodes, uniforms, computeUpdate } = useMemo(() => {
+  const { nodes, uniforms, computeUpdate, computeInit } = useMemo(() => {
     // uniforms
     const uniforms = {
       color: uniform(color(startColor)),
@@ -342,6 +343,7 @@ export const TorusParticles = ({
       emissiveBoost: uniform(1.0),
       particleOpacity: uniform(0.6),
       responsiveScale: uniform(1.0), // Responsive scaling uniform
+      shouldAnimate: uniform(0.0), // NEW: Animation control uniform
     };
 
     // buffers
@@ -364,31 +366,49 @@ export const TorusParticles = ({
     const y = row.div(size.toFloat());
     const targetPos = texture(targetPositionsTexture, vec2(x, y)).xyz;
 
+    // NEW: Init function that spawns particles at random positions (like GPGPUParticles)
     const computeInit = Fn(() => {
-      // Initialize particles directly at their target positions instead of random spawn positions
-      spawnPosition.assign(targetPos);
+      spawnPosition.assign(
+        vec3(
+          randValue({ min: -3, max: 3, seed: 0 }),
+          randValue({ min: -3, max: 3, seed: 1 }),
+          randValue({ min: -3, max: 3, seed: 2 })
+        )
+      );
       offsetPosition.assign(0);
       age.assign(randValue({ min: 0, max: lifetime, seed: 11 }));
     })().compute(dynamicNbParticles);
 
-    gl.computeAsync(computeInit);
-
+    const instanceSpeed = randValue({ min: 0.01, max: 0.05, seed: 12 });
     const offsetSpeed = randValue({ min: 0.1, max: 0.5, seed: 14 });
 
-    // update Fn - removed the building animation logic
+    // NEW: Update function that animates particles to their target positions
     const computeUpdate = Fn(() => {
-      // Only update the noise-based offset animation and age
-      offsetPosition.addAssign(
-        mx_fractal_noise_vec3(spawnPosition.mul(age))
-          .mul(offsetSpeed)
-          .mul(deltaTime)
-      );
+      // Only animate when shouldAnimate is true
+      If(uniforms.shouldAnimate.greaterThan(0.5), () => {
+        // Move particles towards their target positions
+        const distanceToTarget = targetPos.sub(spawnPosition);
+        If(distanceToTarget.length().greaterThan(0.01), () => {
+          spawnPosition.addAssign(
+            distanceToTarget
+              .normalize()
+              .mul(min(instanceSpeed, distanceToTarget.length()))
+          );
+        });
 
-      age.addAssign(deltaTime);
+        // Add noise-based offset animation
+        offsetPosition.addAssign(
+          mx_fractal_noise_vec3(spawnPosition.mul(age))
+            .mul(offsetSpeed)
+            .mul(deltaTime)
+        );
 
-      If(age.greaterThan(lifetime), () => {
-        age.assign(0);
-        offsetPosition.assign(0);
+        age.addAssign(deltaTime);
+
+        If(age.greaterThan(lifetime), () => {
+          age.assign(0);
+          offsetPosition.assign(0);
+        });
       });
     })().compute(dynamicNbParticles);
 
@@ -427,6 +447,7 @@ export const TorusParticles = ({
     return {
       uniforms,
       computeUpdate,
+      computeInit, // NEW: Include computeInit in the return
       nodes: {
         positionNode: spawnPosition.add(offsetPosition).add(randOffset),
         colorNode: finalColor,
@@ -436,15 +457,33 @@ export const TorusParticles = ({
     };
   }, [dynamicNbParticles, targetPositionsTexture, deviceInfo, responsiveScale]);
 
+  // NEW: Track when animation should start
+  const hasInitialized = useRef(false);
+  
+  useEffect(() => {
+    if (shouldAnimate && !hasInitialized.current) {
+      // Initialize particles when animation should start
+      gl.computeAsync(computeInit);
+      hasInitialized.current = true;
+    }
+  }, [shouldAnimate, gl, computeInit]);
+
   const lerpedStartColor = useRef(new Color(MODEL_COLORS[curGeometry].start));
   const lerpedEndColor = useRef(new Color(MODEL_COLORS[curGeometry].end));
 
   useFrame((_, delta) => {
     if (!active) return;
-    gl.compute(computeUpdate);
-
+    
+    // NEW: Update animation uniform
+    uniforms.shouldAnimate.value = shouldAnimate ? 1.0 : 0.0;
+    
     // Update responsive scaling uniform
     uniforms.responsiveScale.value = responsiveScale;
+    
+    // Only compute updates when animation is active
+    if (shouldAnimate) {
+      gl.compute(computeUpdate);
+    }
 
     tmpColor.set(debugColor ? startColor : MODEL_COLORS[curGeometry].start);
     lerpedStartColor.current.lerp(tmpColor, delta);
