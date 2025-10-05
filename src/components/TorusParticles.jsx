@@ -130,7 +130,7 @@ export const TorusParticles = ({
   const emissiveBoost = 1.5;
   const torusPositionX = 0;
   const torusPositionY = 0;
-  const torusPositionZ = 0;
+  const torusPositionZ = 5;
 
   // --- MODIFIED: Use dynamic particle count based on device ---
   const [dynamicNbParticles, setDynamicNbParticles] = useState(() => getNbParticles(nbParticles));
@@ -171,9 +171,8 @@ export const TorusParticles = ({
   
     const onLoadOrResize = () => ScrollTrigger.refresh();
     const ctx = gsap.context(() => {
-      // Set a safe initial position so torus is visible even if ScrollTrigger doesn't run
-      // Use a near-camera but in-front z to avoid coinciding with default camera position
-      gsap.set(groupRef.current.position, { y: isMobile ? 1.2 : 0.8, z: 1.5, x: 0 });
+      // Set initial position (offset from sphere)
+      gsap.set(groupRef.current.position, { y: isMobile ? 1.4 : 0.8, z: isMobile ? 7.2 : 5, x: 0 });
   
       // Create a single timeline with ScrollTrigger for all position animations
       const masterTimeline = gsap.timeline({
