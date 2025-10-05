@@ -20,7 +20,7 @@ function App() {
 
   useLenis();
   useResponsiveScrollTrigger();
-  
+
   // Initialize viewport height management for mobile browser UI changes
   useVh();
 
@@ -69,13 +69,11 @@ function App() {
         />
       )}
 
-      <PerformanceMonitor>
-        <Routes>
-          <Route path="/" element={<Home navigationOverlayRef={navigationOverlayRef} />} />
-          <Route path="/contact" element={<Contact navigationOverlayRef={navigationOverlayRef} />} />
-        </Routes>
-        <NavigationOverlay ref={navigationOverlayRef} />
-      </PerformanceMonitor>
+      <Routes>
+        <Route path="/" element={<Home navigationOverlayRef={navigationOverlayRef} />} />
+        <Route path="/contact" element={<Contact navigationOverlayRef={navigationOverlayRef} />} />
+      </Routes>
+      <NavigationOverlay ref={navigationOverlayRef} />
     </>
   );
 }
