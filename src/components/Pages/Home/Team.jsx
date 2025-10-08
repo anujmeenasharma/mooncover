@@ -132,10 +132,9 @@ const Team = () => {
           style={{ y: leftColumnY }}
         >
           <div className="flex flex-col gap-2">
-            <ScrambleText vwText="lg:text-[1.5vw] text-[5vw]"  text="Global Experience, Local Execution" />
+            <ScrambleText vwText="lg:text-[2vw] text-[5vw]"  text="The Architects of Growth" />
             <p className="lg:text-xs text-xs w-[60%] uppercase">
-              25+ years of combined experience. Billions in GMV. A global
-              perspective from day one.
+            40+ years of combined experience. Billions in GMV. A global perspective from day one.
             </p>
           </div>
           <p className="text-xs w-[77%]">

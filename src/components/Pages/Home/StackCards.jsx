@@ -68,6 +68,7 @@ const StackCards = () => {
           We start with people, not products. We dive into their rhythms, their rituals, and the quiet truths of how they live and what they love. From these insights, we craft stories that don't just get seen—they get felt.
         </p>
         <div className="w-[80%] lg:w-[25%] relative content lg:order-1 order-2">
+          <p className="text-[#FF6B1A] font-telegraf font-bold">YOUR JOURNEY AMPLIFIED</p>
           <ScrambleText 
             vwText="text-[5vw] sm:text-[3.5vw] lg:text-[2.1vw]" 
             text="From Vision to Market Dominance. Built for"

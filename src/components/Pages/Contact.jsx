@@ -185,7 +185,7 @@ export default function Contact({ navigationOverlayRef }) {
                   </div>
                   <p ref={partnersParaRef} className="text-gray-600 text-xs sm:text-sm w-full sm:w-[90%] lg:w-[80%] leading-relaxed">
                     <span ref={partnersParaStaggerRef} className="will-change-transform text-xs block">
-                      Whether you're a founder or brand with a breakthrough product or an investor seeking the next generation of brand building, we're interested in ambitious partnerships.
+                      Whether you're a founder or a brand with a breakthrough product, we're interested in ambitious partnerships.
                     </span>
                   </p>
                 </div>
@@ -300,9 +300,6 @@ export default function Contact({ navigationOverlayRef }) {
                 >
                   <p className="text-xs sm:text-base lg:text-sm whitespace-nowrap lg:leading-none">
                     Built For Permanence.
-                  </p>
-                  <p className="text-xs sm:text-base lg:text-sm lg:leading-none whitespace-nowrap">
-                    Designed To Resonate. Ready To Scale.
                   </p>
                 </span>
               </div>

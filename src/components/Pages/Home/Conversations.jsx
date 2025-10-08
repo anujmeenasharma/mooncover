@@ -19,6 +19,7 @@ const Conversations = () => {
       {/* Mobile Header - Only visible on small screens */}
       <div className="lg:hidden w-full px-4 sm:px-8 py-8 mb-8">
         <div className="w-[90%] lg:w-full relative whitespace-pre-line">
+        <p className="text-[#FF6B1A] font-telegraf font-bold">The Moonshot Mindset</p>
           <ScrambleText
             vwText="text-[5vw]"
             text="Brands don't just speak; they create a Cultural Conversation."
@@ -122,6 +123,7 @@ const Conversations = () => {
           style={{ y: leftColumnY }}
         >
           <div className="w-[70%] relative whitespace-pre-line">
+            <p className="text-[#FF6B1A] font-telegraf font-bold uppercase">The Moonshot Mindset</p>
             <ScrambleText
               vwText="text-[1.8vw]"
               text="Brands don't"

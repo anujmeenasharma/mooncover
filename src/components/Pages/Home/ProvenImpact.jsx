@@ -186,7 +186,7 @@ const ProvenImpact = () => {
           {/* Original card content */}
           <div ref={titleSectionRef} className="flex flex-col lg:gap-2 md:gap-2 sm:gap-1 gap-1 will-change-transform">
             <div className="whitespace-nowrap overflow-hidden">
-              <ScrambleText vwText="lg:text-[2vw] md:text-[3vw] sm:text-[4vw] text-[6.5vw]" textSize="lg:4xl md:3xl sm:2xl text-xl" text="Proven impact" />
+              <ScrambleText vwText="lg:text-[2vw] md:text-[3vw] sm:text-[4vw] text-[6.5vw]" textSize="lg:4xl md:3xl sm:2xl text-xl" text="impact in action" />
             </div>
             <h1 ref={headingRefMove} className="lg:text-sm md:text-xs sm:text-xs text-xs uppercase font-bold w-[80%] lg:w-full">
               From First Launch to Market Leadership

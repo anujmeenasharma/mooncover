@@ -15,7 +15,7 @@ const Details = () => {
   const stickyWrapperRef = useRef(null)
   const titleStaggerRef = useRef(null)
   const descriptionStaggerRef = useRef(null)
-
+  const whatFuelsUsRef = useRef(null)
   useGSAP(() => {
 
     const detailsEl = detailsRef.current
@@ -57,13 +57,13 @@ const Details = () => {
       }
     );
 
-    gsap.set([titleStaggerRef.current, descriptionStaggerRef.current], {
+    gsap.set([whatFuelsUsRef.current, titleStaggerRef.current, descriptionStaggerRef.current], {
       y: 0,
       opacity: 1,
       visibility: "visible"
     });
 
-    gsap.to([titleStaggerRef.current, descriptionStaggerRef.current], {
+    gsap.to([whatFuelsUsRef.current, titleStaggerRef.current, descriptionStaggerRef.current], {
       y: -200,
       stagger: 0.5,
       opacity: 0,
@@ -97,6 +97,7 @@ const Details = () => {
   return (
     <div ref={stickyWrapperRef} className="relative w-full" style={{ height: "300vh" }}>
       <div ref={mainContainerRef} className="sticky top-0 h-[100vh] w-full z-20 overflow-hidden px-4 flex gap-4 flex-col items-center justify-center">
+        <p ref={whatFuelsUsRef} className="text-[#FF6B1A] font-telegraf font-bold">WHAT FEULS US</p>
         <div className="relative text-center w-full" ref={titleRef}>
           <div ref={titleStaggerRef}>
             <ScrambleText vwText="lg:text-[2.5vw] text-[5vw]" text="We are driven to create powerful consumer brands" />

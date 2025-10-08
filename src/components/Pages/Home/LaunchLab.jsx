@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import GlobalScene from "../../GlobalScene";
 import ScrambleText from "../../UiComponents/ScrambleText";
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 const LaunchLab = () => {
   const launchLabRef = useRef(null);
@@ -12,13 +13,12 @@ const LaunchLab = () => {
   const counterRef = useRef(null);
   const numbersWrapperRef = useRef(null);
   const [modelIndex, setModelIndex] = useState(0);
-  const [shouldAnimate, setShouldAnimate] = useState(false); // Add this state
+  const [shouldAnimate, setShouldAnimate] = useState(false);
   const contentRef = useRef(null);
   const href1 = useRef(null);
   const href2 = useRef(null);
   const href3 = useRef(null);
 
-  // Added RotatedBox to the models array (z-rotated box geometry for frame)
   const models = ["RotatedBox", "Torus", "Box", "Sphere", "Cone"]
   const modelContent = [
     {
@@ -44,7 +44,7 @@ const LaunchLab = () => {
     {
       title: "CONNECT",
       description:
-        "Network effects where each successful brand amplifies the entire ecosystem",
+        "Network effects where each successful brand amplifies the entire ecosystem",
     }
   ];
 
@@ -65,7 +65,6 @@ const LaunchLab = () => {
           backgroundColor: "#dadada",
           ease: "power2.inOut",
         });
-        // Trigger animation when entering the section
         setShouldAnimate(true);
       },
       onLeave: () => {
@@ -74,7 +73,6 @@ const LaunchLab = () => {
           backgroundColor: "black",
           ease: "power2.inOut",
         });
-        // Stop animation when leaving the section
         setShouldAnimate(false);
       },
       onEnterBack: () => {
@@ -83,7 +81,6 @@ const LaunchLab = () => {
           backgroundColor: "#dadada",
           ease: "power2.inOut",
         });
-        // Trigger animation when entering back
         setShouldAnimate(true);
       },
       onLeaveBack: () => {
@@ -92,7 +89,6 @@ const LaunchLab = () => {
           backgroundColor: "black",
           ease: "power2.inOut",
         });
-        // Stop animation when leaving back
         setShouldAnimate(false);
       },
     });
@@ -171,6 +167,19 @@ const LaunchLab = () => {
     });
   }, [modelIndex]);
 
+  const handlePaginationClick = (index) => {
+    const isMobile = window.innerWidth <= 768;
+    const isTablet = window.innerWidth > 768 && window.innerWidth <= 1024;
+    const segmentMultiplier = isMobile ? 0.8 : (isTablet ? 0.9 : 1);
+    const sectionTop = launchLabRef.current.getBoundingClientRect().top + window.scrollY;
+    const targetScroll = sectionTop + (index * window.innerHeight * segmentMultiplier);
+    gsap.to(window, {
+      scrollTo: targetScroll,
+      duration: 1,
+      ease: "power2.inOut"
+    });
+  };
+
   useEffect(() => {
     const animeElems = [href1.current, href2.current, href3.current, textRef.current]
 
@@ -210,17 +219,16 @@ const LaunchLab = () => {
     <div
       ref={launchLabRef}
       className="relative w-full"
-      style={{ height: "600vh" }} // Increased height to accommodate 5 geometries
+      style={{ height: "600vh" }}
     >
-      <div ref={stickyRef} className="sticky top-0 h-[100vh] w-full">
+      <div ref={stickyRef} className="sticky top-0 h-[100vh] w-full pointer-events-none">
         <GlobalScene 
           curGeometry={models[modelIndex]} 
           hideControls={true} 
-          shouldAnimate={shouldAnimate} // Pass the animation state
+          shouldAnimate={shouldAnimate}
         />
         <div
-          className="w-full h-[100vh] z-40 absolute top-0 left-0 flex items-center justify-center"
-          style={{ pointerEvents: "none" }}
+          className="w-full h-[100vh] z-40 absolute top-0 left-0 flex items-center justify-center pointer-events-none"
         >
           <div className="text-center flex flex-col gap-[40vh] lg:gap-[22vw] launchlab-text w-full items-center" ref={contentRef}>
             <div className="flex flex-col gap-2 items-center">
@@ -245,16 +253,41 @@ const LaunchLab = () => {
         </div>
 
         <div
-          className="left-1/2 absolute bottom-6 -translate-x-1/2 telegraf"
+          className="left-1/2 absolute bottom-6 -translate-x-1/2 telegraf pointer-events-auto z-50"
           ref={counterRef}
         >
           <div className="flex flex-row lg:gap-4 text-lg lg:text-xs font-bold items-center justify-center">
             <div className="flex flex-row gap-8 lg:gap-4" ref={numbersWrapperRef}>
-              <span className="transition-all duration-300 cursor-pointer text-black">01</span>
-              <span className="transition-all duration-300 cursor-pointer text-black">02</span>
-              <span className="transition-all duration-300 cursor-pointer text-black">03</span>
-              <span className="transition-all duration-300 cursor-pointer text-black">04</span>
-              <span className="transition-all duration-300 cursor-pointer text-black">05</span> {/* Added 5th counter */}
+              <span 
+                className="transition-all duration-300 cursor-pointer text-black hover:scale-110" 
+                onClick={() => handlePaginationClick(0)}
+              >
+                01
+              </span>
+              <span 
+                className="transition-all duration-300 cursor-pointer text-black hover:scale-110" 
+                onClick={() => handlePaginationClick(1)}
+              >
+                02
+              </span>
+              <span 
+                className="transition-all duration-300 cursor-pointer text-black hover:scale-110" 
+                onClick={() => handlePaginationClick(2)}
+              >
+                03
+              </span>
+              <span 
+                className="transition-all duration-300 cursor-pointer text-black hover:scale-110" 
+                onClick={() => handlePaginationClick(3)}
+              >
+                04
+              </span>
+              <span 
+                className="transition-all duration-300 cursor-pointer text-black hover:scale-110" 
+                onClick={() => handlePaginationClick(4)}
+              >
+                05
+              </span>
             </div>
           </div>
         </div>
