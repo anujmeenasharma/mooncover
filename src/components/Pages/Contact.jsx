@@ -348,11 +348,13 @@ export default function Contact({ navigationOverlayRef }) {
                   OUR SOCIALS
                 </h3>
                 <div className="flex text-black pb-2 lg:pb-0 space-x-2 sm:space-x-3">
-                  <img
-                    src="/ig.svg"
-                    alt="instagram"
-                    className="w-5 h-5 sm:w-4 sm:h-4 text-gray-400 cursor-pointer"
-                  />
+                  <a href="https://www.instagram.com/moonshotstudio.ai" target="_blank" rel="noopener noreferrer">
+                    <img
+                      src="/ig.svg"
+                      alt="instagram"
+                      className="w-5 h-5 sm:w-4 sm:h-4 text-gray-400 cursor-pointer"
+                    />
+                  </a>
                   <span className="text-xs">|</span>
                   <img
                     src="/in.svg"
@@ -360,11 +362,13 @@ export default function Contact({ navigationOverlayRef }) {
                     className="w-5 h-5 sm:w-4 sm:h-4 text-gray-400 cursor-pointer"
                   />
                   <span className="text-xs">|</span>
-                  <img
-                    src="/x.svg"
-                    alt="twitter"
-                    className="w-5 h-5 sm:w-4 sm:h-4 text-gray-400 cursor-pointer"
-                  />
+                  <a href="https://x.com/moonshotst_ai" target="_blank" rel="noopener noreferrer">
+                    <img
+                      src="/x.svg"
+                      alt="twitter"
+                      className="w-5 h-5 sm:w-4 sm:h-4 text-gray-400 cursor-pointer"
+                    />
+                  </a>
                   <span className="text-xs">|</span>
                   <img
                     src="/fb.svg"
@@ -372,11 +376,13 @@ export default function Contact({ navigationOverlayRef }) {
                     className="w-5 h-5 sm:w-4 sm:h-4 text-gray-400 cursor-pointer"
                   />
                   <span className="text-xs">|</span>
-                  <img
-                    src="/yt.svg"
-                    alt="youtube"
-                    className="w-5 h-5 sm:w-4 sm:h-4 text-gray-400 cursor-pointer"
-                  />
+                  <a href="https://www.youtube.com/@Moonshotstudio.official" target="_blank" rel="noopener noreferrer">
+                    <img
+                      src="/yt.svg"
+                      alt="youtube"
+                      className="w-5 h-5 sm:w-4 sm:h-4 text-gray-400 cursor-pointer"
+                    />
+                  </a>
                 </div>
               </div>
             </div>

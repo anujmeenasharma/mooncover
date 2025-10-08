@@ -167,11 +167,10 @@ const Team = () => {
           <div className="flex flex-col">
             <div className="flex flex-col">
               <div ref={mobileHeadingRef}>
-                <ScrambleText textSize="2xl" text="Team behind it" />
+                <ScrambleText textSize="2xl" text="The Architects of Growth" />
               </div>
               <p ref={mobileSubtitleRef} className="text-xs w-[85%] uppercase leading-relaxed">
-                25+ years of combined experience. Billions in GMV. A global
-                perspective from day one.
+                40+ years of combined experience. Billions in GMV. A global perspective from day one.
               </p>
             </div>
           </div>
@@ -198,15 +197,7 @@ const Team = () => {
           </div>
 
           <p ref={mobileFinalParaRef} className="text-[3vw] text-justify leading-relaxed">
-              Our leadership team has built category-defining consumer brands from
-              zero to market leadership across Southeast Asia and beyond. We've
-              scaled operations for major fashion e-commerce platforms, led
-              digital transformation for global F&B brands, and navigated the
-              complexities of launching consumer products across diverse markets
-              and cultures. What sets us apart: We've been on both sides of the
-              table—as operators building from scratch and as strategic advisors
-              helping brands scale. We understand the creative challenges of brand
-              building and the operational realities of sustainable growth.
+              Our leadership team has built category-defining consumer brands from zero to market leadership across Southeast Asia and beyond. We've scaled operations for major fashion e-commerce platforms, led digital transformation for global F&B brands, and navigated the complexities of launching consumer products across diverse markets and cultures.
             </p>
         </div>
       </div>
