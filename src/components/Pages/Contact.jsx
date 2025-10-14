@@ -294,39 +294,12 @@ export default function Contact({ navigationOverlayRef }) {
                   alt="footer"
                   className="w-[28vw] h-[7vw] object-contain lg:w-[12vw] lg:h-[5vw] max-w-[180px] max-h-[40px]"
                 />
-                <span
-                  ref={footerTextStaggerRef}
-                  className="will-change-transform block pb-3"
-                >
-                  <p className="text-xs sm:text-base lg:text-sm whitespace-nowrap lg:leading-none">
-                    Built For Permanence.
-                  </p>
-                </span>
               </div>
             </div>
 
             {/* Links Section */}
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 lg:gap-8">
               {/* Company Links */}
-              <div>
-                <h3 className="font-bold text-base mb-1 telegraf lg:mb-2 text-black lg:text-xs">
-                  COMPANY
-                </h3>
-                <div className="flex gap-1">
-                  <a
-                    href="#"
-                    className="block text-gray-400 text-xs sm:text-xs"
-                  >
-                    HOW IT WORKS
-                  </a>
-                  <a
-                    href="#"
-                    className="block text-gray-400 text-xs sm:text-xs"
-                  >
-                    OUR BELIEFS
-                  </a>
-                </div>
-              </div>
 
               {/* Contact */}
               <div>

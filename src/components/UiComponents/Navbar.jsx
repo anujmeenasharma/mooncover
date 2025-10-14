@@ -217,14 +217,14 @@ const Navbar = ({ navigationOverlayRef }) => {
             onClick={(e) => handleNavigation(e, 'how we work')}
             style={{ mixBlendMode: "exclusion" }}
           >
-            How we work
+            the growth engine
           </button>
           <button
             className="hidden lg:inline-block uppercase text-xs font-medium whitespace-nowrap cursor-pointer"
             onClick={(e) => handleNavigation(e, 'who we are for')}
             style={{ mixBlendMode: "exclusion" }}
           >
-            who we are for
+            your journey
           </button>
         </div>
 
@@ -235,7 +235,7 @@ const Navbar = ({ navigationOverlayRef }) => {
             onClick={(e) => handleNavigation(e, 'our beliefs')}
             style={{ mixBlendMode: "exclusion" }}
           >
-            our beliefs
+            the moonshot mindset
           </button>
           <button
             className="uppercase font-medium text-xs whitespace-nowrap cursor-pointer"
@@ -249,7 +249,7 @@ const Navbar = ({ navigationOverlayRef }) => {
             onClick={(e) => handleNavigation(e, 'team')}
             style={{ mixBlendMode: "exclusion" }}
           >
-            team
+            the architects
           </button>
           <button
             ref={contactButtonRef}
@@ -295,7 +295,7 @@ const Navbar = ({ navigationOverlayRef }) => {
                 closeMobileMenu()
               }}
             >
-              How we work
+              the growth engine
             </button>
             <button
               ref={el => mobileLinksRef.current[1] = el}
@@ -305,7 +305,7 @@ const Navbar = ({ navigationOverlayRef }) => {
                 closeMobileMenu()
               }}
             >
-              who we are for
+              your journey
             </button>
             <button
               ref={el => mobileLinksRef.current[2] = el}
@@ -315,7 +315,7 @@ const Navbar = ({ navigationOverlayRef }) => {
                 closeMobileMenu()
               }}
             >
-              our beliefs
+              the moonshot mindset
             </button>
             <button
               ref={el => mobileLinksRef.current[3] = el}
@@ -335,7 +335,7 @@ const Navbar = ({ navigationOverlayRef }) => {
                 closeMobileMenu()
               }}
             >
-              team
+              the architects
             </button>
             <button
               ref={el => {
